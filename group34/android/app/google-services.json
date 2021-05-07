@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354115307951",
+    "project_id": "group34-81553",
+    "storage_bucket": "group34-81553.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354115307951:android:b4e24feac2c57c2a5bc75a",
+        "android_client_info": {
+          "package_name": "edu.sabanciuniv.group34"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354115307951-8kn12norgh8hh6igcflgd307b3ah7ram.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcobyfGLYn2aUcpjpF-DSCC4xSAjqxaYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354115307951-8kn12norgh8hh6igcflgd307b3ah7ram.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

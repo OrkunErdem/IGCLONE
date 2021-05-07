@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/BottomPages/SecretProfile.dart';
 import 'package:group34/routes/walkthrough.dart';
@@ -10,7 +11,14 @@ import 'package:group34/routes/home.dart';
 import 'package:group34/routes/notificationpage.dart';
 import 'package:group34/routes/searchpage.dart';
 import 'package:group34/routes/edit_profile.dart';
-void main() => runApp(MaterialApp(
+
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MaterialApp(
+
   //home: Welcome(),
   //initialRoute: '/login',
   routes: {
@@ -27,3 +35,6 @@ void main() => runApp(MaterialApp(
     '/editprofilepage': (context) => EditProfilePage(),
   },
 ));
+}
+
+
