@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:group34/bottompages/HomePage.dart';
 import 'package:group34/routes/home.dart';
 import 'package:group34/utils/color.dart';
-import 'package:flutter/material.dart';
 
 class UploadePage extends StatefulWidget {
   @override

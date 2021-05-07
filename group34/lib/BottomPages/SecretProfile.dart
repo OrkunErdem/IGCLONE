@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/model/post.dart';
-import 'package:group34/postCard.dart';
+import '../postCard.dart';
 
-class ProfilePage extends StatefulWidget {
-@override
-_ProfileViewState createState() => _ProfileViewState();
+class Secret extends StatefulWidget {
+  @override
+  _SecretViewState createState() => _SecretViewState();
 }
 
-class _ProfileViewState extends State<ProfilePage> {
+class _SecretViewState extends State<Secret> {
 
   int postCount = 0;
 
@@ -46,7 +46,7 @@ class _ProfileViewState extends State<ProfilePage> {
           new IconButton(
             icon: new Icon(Icons.settings,color: Colors.white,),
             onPressed: () {
-            Navigator.pushNamed(context, '/editprofilepage');
+              Navigator.pushNamed(context, '/editprofilepage');
             },
           ),
 
@@ -56,7 +56,7 @@ class _ProfileViewState extends State<ProfilePage> {
         centerTitle: true,
         elevation: 0.0,
       ),
-        backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[200],
 
 
       body: SingleChildScrollView(
@@ -66,23 +66,23 @@ class _ProfileViewState extends State<ProfilePage> {
           children: [
             Row(
                 children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage('https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg',
+                  CircleAvatar(
+                    backgroundImage: NetworkImage('https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg',
+                    ),
+                    radius: 45,
                   ),
-                  radius: 45,
-                ),
                   SizedBox(width: 5,),
-                Text(
-                  'USER_NAME',
-                  style: TextStyle(
-                    fontFamily: 'BrandonText',
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primary,
+                  Text(
+                    'USER_NAME',
+                    style: TextStyle(
+                      fontFamily: 'BrandonText',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.primary,
+                    ),
                   ),
-                ),
 
-              ]
+                ]
             ),
             SizedBox(height: 7,),
             Row(
@@ -117,25 +117,20 @@ class _ProfileViewState extends State<ProfilePage> {
               color: AppColors.primary,
               thickness: 20,
             ),
-            Column(
-              children: posts.map((post) => PostCard(
-                  post: post,
-                  delete: () {
-                    setState(() {
-                      posts.remove(post);
-                    });
-                  }
-              )).toList(),
-            ),
+            Row(
+            children: [
+             Image(
+              image:NetworkImage('https://plumbr.io/app/uploads/2015/01/thread-lock.jpeg',
+    ),
+             ),
 
+            ],
+          ),
           ],
+
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-      backgroundColor: AppColors.primary,
-      child: Icon(Icons.add),
-      onPressed: buttonPressed,
-    ),
+
     );
   }
 }

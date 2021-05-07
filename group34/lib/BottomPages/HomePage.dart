@@ -1,13 +1,11 @@
+import 'package:group34/utils/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/routes/login.dart';
 import 'package:group34/routes/walkthrough2.dart';
 import 'package:group34/utils/color.dart';
+import 'package:group34/utils/styles.dart';
 import 'package:group34/model/post.dart';
 import 'package:group34/postCard.dart';
-import 'package:group34/utils/dimension.dart';
-import 'package:group34/utils/styles.dart';
-import 'package:group34/utils/color.dart';
-import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,6 +30,11 @@ class _HomeViewState extends State<HomePage> {
     });
   }
 
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +44,23 @@ class _HomeViewState extends State<HomePage> {
           'HOMEPAGE',
           style: kAppBarTitleTextStyle,
         ),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.search,color: Colors.white,),
+            onPressed: () {
+              Navigator.pushNamed(context, '/searchpage');
+            },
+          ),
+          new IconButton(
+             icon: new Icon(Icons.notifications_active_outlined,color: Colors.white,),
+            onPressed: () {
+              Navigator.pushNamed(context, '/notificationpage');
+            },
+           ),
+          
+        ],
         backgroundColor: AppColors.primary,
+
         centerTitle: true,
         elevation: 0.0,
       ),
