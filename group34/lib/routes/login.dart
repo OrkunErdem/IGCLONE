@@ -4,6 +4,7 @@ import 'package:group34/utils/styles.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -12,57 +13,68 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
+
+  String _message = '';
   int attemptCount;
   String mail;
   String pass;
   final _formKey = GlobalKey<FormState>();
 
-  Future<void> showAlertDialog(String title, String message) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, //User must tap button
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                Text(message),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      }
-    );
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+
+  void setmessage(String msg) {
+    setState(() {
+      _message = msg;
+    });
   }
 
+  Future<void> signupUser() async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: mail, password: pass);
+      print(userCredential.toString());
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      if(e.code == 'email-already-in-use') {
+        setmessage('This email is already in use');
+      }
+      else if(e.code == 'weak-password') {
+        setmessage('Weak password, add uppercase, lowercase, digit, special character, emoji, etc.');
+      }
+    }
+  }
 
-  void getData() async {
-    String name = await Future.delayed(Duration(seconds: 3), () {
-      return 'group 34';
-    });
+  Future<void> loginUser() async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: mail,
+          password: pass
+      );
+      print(userCredential.toString());
 
-    String uni = await Future.delayed(Duration(seconds: 1), () {
-      return 'Sabancı University';
-    });
-
-    print('$name: $uni');
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      if(e.code == 'user-not-found') {
+        signupUser();
+      }
+      else if (e.code == 'wrong-password') {
+        setmessage('Please check your password');
+      }
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    print('initState called');
-    attemptCount = 0;
-    getData();
+
+    auth.authStateChanges().listen((User user) {
+      if(user == null) {
+        print('User is signed out');
+      }
+      else {
+        print('User is signed in');
+      }
+    });
   }
 
   @override
@@ -179,9 +191,9 @@ class _LoginState extends State<Login> {
                               _formKey.currentState.save();
 
                               //showAlertDialog("Action", 'Button clicked');
-                              setState(() {
-                                attemptCount += 1;
-                              });
+
+
+                              loginUser();
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content: Text('Logging in')));
@@ -203,6 +215,13 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ],
+                  ),
+
+                  Text(
+                    _message,
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
                   ),
                 ],
               ),

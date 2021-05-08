@@ -2,8 +2,14 @@ import 'package:group34/utils/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/utils/styles.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class walkthrough extends StatefulWidget {
+  const walkthrough({Key key, this.analytics, this.observer}) : super(key: key);
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
   @override
   _WelcomeState2 createState() => _WelcomeState2();
 }
