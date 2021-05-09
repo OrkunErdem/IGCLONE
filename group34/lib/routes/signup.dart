@@ -3,6 +3,7 @@ import 'package:group34/utils/styles.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/utils/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
+  String _message = '';
   int attemptCount;
   String mail;
   String pass;
@@ -18,7 +19,27 @@ class _SignUpState extends State<SignUp> {
   String userName;
   final _formKey = GlobalKey<FormState>();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+  void setmessage(String msg) {
+    setState(() {
+      _message = msg;
+    });
+  }
 
+  Future<void> signupUser() async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: mail, password: pass);
+      print(userCredential.toString());
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      if(e.code == 'email-already-in-use') {
+        setmessage('This email is already in use');
+      }
+      else if(e.code == 'weak-password') {
+        setmessage('Weak password, add uppercase, lowercase, digit, special character, emoji, etc.');
+      }
+    }
+  }
   Future<void> showAlertDialog(String title, String message) async {
     return showDialog<void>(
         context: context,
@@ -237,7 +258,7 @@ class _SignUpState extends State<SignUp> {
                                 showAlertDialog("Error", 'Passwords must match');
                               }
                               else {
-                                //TODO: Sign up process
+                                signupUser();
                               }
                               //
                               setState(() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'file:///F:/projects/Group34/group34/lib/BottomPages/ProfilePage.dart';
-import 'file:///F:/projects/Group34/group34/lib/BottomPages/UploadPage.dart';
+import 'package:group34/BottomPages/ProfilePage.dart';
+import 'package:group34/BottomPages/UploadPage.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:flutter/material.dart';

@@ -29,20 +29,7 @@ class _LoginState extends State<Login> {
     });
   }
 
-  Future<void> signupUser() async {
-    try {
-      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: mail, password: pass);
-      print(userCredential.toString());
-    } on FirebaseAuthException catch (e) {
-      print(e.toString());
-      if(e.code == 'email-already-in-use') {
-        setmessage('This email is already in use');
-      }
-      else if(e.code == 'weak-password') {
-        setmessage('Weak password, add uppercase, lowercase, digit, special character, emoji, etc.');
-      }
-    }
-  }
+
 
   Future<void> loginUser() async {
     try {
@@ -50,12 +37,13 @@ class _LoginState extends State<Login> {
           email: mail,
           password: pass
       );
+      Navigator.pushNamed(context, '/home');
       print(userCredential.toString());
 
     } on FirebaseAuthException catch (e) {
       print(e.toString());
       if(e.code == 'user-not-found') {
-        signupUser();
+        setmessage('User not found');
       }
       else if (e.code == 'wrong-password') {
         setmessage('Please check your password');
@@ -73,6 +61,7 @@ class _LoginState extends State<Login> {
       }
       else {
         print('User is signed in');
+
       }
     });
   }
@@ -197,7 +186,7 @@ class _LoginState extends State<Login> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content: Text('Logging in')));
-                                   Navigator.pushNamed(context, '/home');
+
                             }
 
                           },
