@@ -44,6 +44,7 @@ class _HomeViewState extends State<HomePage> {
           'HOMEPAGE',
           style: kAppBarTitleTextStyle,
         ),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.search,color: Colors.white,),

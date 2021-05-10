@@ -23,6 +23,7 @@ class _WelcomeState2 extends State<walkthrough> {
           'Walkthrough',
           style: kAppBarTitleTextStyle,
         ),
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary,
         centerTitle: true,
         elevation: 0.0,

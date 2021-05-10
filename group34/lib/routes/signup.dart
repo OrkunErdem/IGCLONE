@@ -76,6 +76,7 @@ class _SignUpState extends State<SignUp> {
           'SIGNUP',
           style: kAppBarTitleTextStyle,
         ),
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary,
         centerTitle: true,
         elevation: 0.0,

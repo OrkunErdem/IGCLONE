@@ -31,6 +31,7 @@ class _ProfileViewState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Profile',
           style: kAppBarTitleTextStyle,

@@ -35,6 +35,7 @@ class _SecretViewState extends State<Secret> {
           'Profile',
           style: kAppBarTitleTextStyle,
         ),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.home,color: Colors.white,),

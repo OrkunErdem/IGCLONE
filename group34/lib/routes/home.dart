@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/BottomPages/ProfilePage.dart';
 import 'package:group34/BottomPages/UploadPage.dart';
@@ -16,6 +18,8 @@ class home extends StatefulWidget {
 
 
 class MyStatefulWidget extends StatefulWidget {
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(analytics: analytics);
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
 }
