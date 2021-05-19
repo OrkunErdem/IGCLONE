@@ -2,7 +2,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/BottomPages/SecretProfile.dart';
-import 'package:group34/routes/deneme.dart';
 import 'package:group34/routes/walkthrough.dart';
 import 'package:group34/routes/walkthrough2.dart';
 import 'package:group34/routes/walkthrough3.dart';
@@ -78,7 +77,6 @@ class AppBase extends StatelessWidget {
         '/notificationpage': (context) => notificationpage(),
         '/searchpage': (context) => searchpage(),
         '/editprofilepage': (context) => EditProfilePage(),
-        '/deneme': (context) =>Google(),
       },
     );
   }

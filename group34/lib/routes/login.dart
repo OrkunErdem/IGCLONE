@@ -2,11 +2,11 @@ import 'package:group34/utils/color.dart';
 import 'package:group34/utils/dimension.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:group34/widgets/google_signup_button_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 
 class Login extends StatefulWidget {
   @override
@@ -14,10 +14,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
-
-
-
 
   String _message = '';
   int attemptCount;
@@ -35,6 +31,41 @@ class _LoginState extends State<Login> {
   }
 
 
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    UserCredential userCredential = await auth.signInWithCredential(credential);
+    Navigator.pushNamed(context, '/home');
+    print(userCredential.toString());
+    return userCredential;
+  }
+
+
+  Future<void> signupUser() async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: mail, password: pass);
+      print(userCredential.toString());
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      if(e.code == 'email-already-in-use') {
+        setmessage('This email is already in use');
+      }
+      else if(e.code == 'weak-password') {
+        setmessage('Weak password, add uppercase, lowercase, digit, special character, emoji, etc.');
+      }
+    }
+  }
 
   Future<void> loginUser() async {
     try {
@@ -48,7 +79,7 @@ class _LoginState extends State<Login> {
     } on FirebaseAuthException catch (e) {
       print(e.toString());
       if(e.code == 'user-not-found') {
-        setmessage('User not found');
+        signupUser();
       }
       else if (e.code == 'wrong-password') {
         setmessage('Please check your password');
@@ -66,7 +97,6 @@ class _LoginState extends State<Login> {
       }
       else {
         print('User is signed in');
-
       }
     });
   }
@@ -80,7 +110,6 @@ class _LoginState extends State<Login> {
           'LOGIN',
           style: kAppBarTitleTextStyle,
         ),
-        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primary,
         centerTitle: true,
         elevation: 0.0,
@@ -192,7 +221,6 @@ class _LoginState extends State<Login> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(content: Text('Logging in')));
-
                             }
 
                           },
@@ -212,6 +240,35 @@ class _LoginState extends State<Login> {
                     ],
                   ),
 
+
+
+                  SizedBox(height: 36),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            signInWithGoogle();
+                          },
+
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            child: Text(
+                              'Sign in with Gmail',
+                              style: kButtonLightTextStyle,
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
                   Text(
                     _message,
                     style: TextStyle(
@@ -221,28 +278,11 @@ class _LoginState extends State<Login> {
                 ],
               ),
             ),
-        Container(
-          padding: EdgeInsets.all(4),
-          child: OutlineButton.icon(
-            label: Text(
-              'Sign In With Google',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            highlightedBorderColor: Colors.black,
-            borderSide: BorderSide(color: Colors.black),
-            textColor: Colors.black,
-            icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
-            onPressed: () {
-              Navigator.pushNamed(context, '/deneme');
-            },
-          ),
-        ),
+
+
           ],
         ),
       ),
-
     );
   }
 }

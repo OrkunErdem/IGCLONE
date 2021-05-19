@@ -5,6 +5,7 @@ import 'package:group34/utils/styles.dart';
 
 
 class walkthrough3 extends StatefulWidget {
+
   @override
   _WelcomeState2 createState() => _WelcomeState2();
 }
