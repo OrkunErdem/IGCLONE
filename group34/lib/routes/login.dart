@@ -114,173 +114,175 @@ class _LoginState extends State<Login> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Padding(
-        padding: Dimen.regularPadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: Dimen.regularPadding,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
 
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            fillColor: AppColors.secondary,
-                            filled: true,
-                            hintText: 'E-mail',
-                            //labelText: 'Username',
-                            labelStyle: kLabelLightTextStyle,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.primary),
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              fillColor: AppColors.secondary,
+                              filled: true,
+                              hintText: 'E-mail',
+                              //labelText: 'Username',
+                              labelStyle: kLabelLightTextStyle,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.primary),
+                                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              ),
                             ),
-                          ),
-                          keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.emailAddress,
 
-                          validator: (value) {
-                            if(value.isEmpty) {
-                              return 'Please enter your e-mail';
-                            }
-                            if(!EmailValidator.validate(value)) {
-                              return 'The e-mail address is not valid';
-                            }
-                            return null;
-                          },
-                          onSaved: (String value) {
-                            mail = value;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 16.0,),
-
-
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            fillColor: AppColors.secondary,
-                            filled: true,
-                            hintText: 'Password',
-                            //labelText: 'Username',
-                            labelStyle: kLabelLightTextStyle,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.primary),
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                          ),
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          enableSuggestions: false,
-                          autocorrect: false,
-
-                          validator: (value) {
-                            if(value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            if(value.length < 8) {
-                              return 'Password must be at least 8 characters';
-                            }
-                            return null;
-                          },
-                          onSaved: (String value) {
-                            pass = value;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 16,),
-
-
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: OutlinedButton(
-                          onPressed: () {
-
-                            if(_formKey.currentState.validate()) {
-                              _formKey.currentState.save();
-
-                              //showAlertDialog("Action", 'Button clicked');
-
-
-                              loginUser();
-
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(content: Text('Logging in')));
-                            }
-
-                          },
-
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            child: Text(
-                              'Login',
-                              style: kButtonDarkTextStyle,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
+                            validator: (value) {
+                              if(value.isEmpty) {
+                                return 'Please enter your e-mail';
+                              }
+                              if(!EmailValidator.validate(value)) {
+                                return 'The e-mail address is not valid';
+                              }
+                              return null;
+                            },
+                            onSaved: (String value) {
+                              mail = value;
+                            },
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-
-
-
-                  SizedBox(height: 36),
-
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            signInWithGoogle();
-                          },
-
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            child: Text(
-                              'Sign in with Gmail',
-                              style: kButtonLightTextStyle,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Text(
-                    _message,
-                    style: TextStyle(
-                      color: Colors.red,
+                      ],
                     ),
-                  ),
-                ],
+
+                    SizedBox(height: 16.0,),
+
+
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              fillColor: AppColors.secondary,
+                              filled: true,
+                              hintText: 'Password',
+                              //labelText: 'Username',
+                              labelStyle: kLabelLightTextStyle,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.primary),
+                                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              ),
+                            ),
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            enableSuggestions: false,
+                            autocorrect: false,
+
+                            validator: (value) {
+                              if(value.isEmpty) {
+                                return 'Please enter your password';
+                              }
+                              if(value.length < 8) {
+                                return 'Password must be at least 8 characters';
+                              }
+                              return null;
+                            },
+                            onSaved: (String value) {
+                              pass = value;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16,),
+
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 1,
+                          child: OutlinedButton(
+                            onPressed: () {
+
+                              if(_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
+
+                                //showAlertDialog("Action", 'Button clicked');
+
+
+                                loginUser();
+
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(content: Text('Logging in')));
+                              }
+
+                            },
+
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12.0),
+                              child: Text(
+                                'Login',
+                                style: kButtonDarkTextStyle,
+                              ),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+
+
+                    SizedBox(height: 36),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 1,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              signInWithGoogle();
+                            },
+
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12.0),
+                              child: Text(
+                                'Sign in with Gmail',
+                                style: kButtonDarkTextStyle,
+                              ),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Text(
+                      _message,
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
 
 
-          ],
+            ],
+          ),
         ),
       ),
     );

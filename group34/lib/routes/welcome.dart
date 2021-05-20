@@ -69,25 +69,34 @@ class _WelcomeState extends State<Welcome> {
       ),
       body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+
+
             children: [
-              OutlinedButton(
-                onPressed: () {
-                  customCrashLog('I pressed a wrong button');
-                  crashApp();
-                },
-                child: const Text('Crash button'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {
+                      customCrashLog('I pressed a wrong button');
+                      crashApp();
+                    },
+                    child: const Text('Crash button'),
+                  ),
+
+                  OutlinedButton(
+                    onPressed: _setuserId,
+                    child: const Text('Set User ID'),
+                  ),
+
+                  OutlinedButton(
+                    onPressed: _setLogEvent,
+                    child: const Text('Custom Log Event'),
+                  ),
+                ],
+
               ),
 
-              OutlinedButton(
-                onPressed: _setuserId,
-                child: const Text('Set User ID'),
-              ),
-
-              OutlinedButton(
-                onPressed: _setLogEvent,
-                child: const Text('Custom Log Event'),
-              ),
 
               Text(
                 _message,
@@ -95,12 +104,55 @@ class _WelcomeState extends State<Welcome> {
                   color: Colors.green,
                 ),
               ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: OutlinedButton(
+                        child:  Text(
+                            'Sign Up',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/signup');
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
+                      ),
 
-              OutlinedButton(
-                child: const Text('Login'),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/login');
-                },
+                    ),
+                  ),
+                ],
+              ),
+
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: OutlinedButton(
+
+
+                        child: const Text(
+                            'Login',
+                          style: TextStyle(color: Colors.white),
+
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           )

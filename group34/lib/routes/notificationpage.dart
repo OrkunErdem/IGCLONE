@@ -7,7 +7,8 @@ import 'package:group34/utils/color.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/model/notification.dart';
-import 'package:group34/notificationclass.dart';
+import 'package:group34/classes_for_ui/notificationclass.dart';
+import 'package:group34/classes_for_ui/friend_request_notification_class.dart';
 class notificationpage extends StatefulWidget {
   @override
   _WelcomeState2 createState() => _WelcomeState2();
@@ -18,10 +19,7 @@ class _WelcomeState2 extends State<notificationpage> {
     A_notification(text: 'Alert1', date: '19 March'),
     A_notification(text: 'Alert2', date: '18 March'),
     A_notification(text: 'Alert3', date: '17 March'),
-    A_notification(text: 'Alert4', date: '19 March'),
-    A_notification(text: 'Alert5', date: '18 March'),
-    A_notification(text: 'Alert6', date: '17 March'),
-    A_notification(text: 'Alert7', date: '17 March'),
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -54,6 +52,16 @@ class _WelcomeState2 extends State<notificationpage> {
               children: [
                 Column(
                   children: posts.map((post) => Notifications(
+                      post: post,
+                      delete: () {
+                        setState(() {
+                          posts.remove(post);
+                        });
+                      }
+                  )).toList(),
+                ),
+                Column(
+                  children: posts.map((post) => friend_request_notification_class(
                       post: post,
                       delete: () {
                         setState(() {

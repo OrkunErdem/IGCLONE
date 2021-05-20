@@ -72,7 +72,7 @@ class _WelcomeState2 extends State<walkthrough> {
                           backgroundColor: AppColors.primary,
                         ),
                       ),
-                      SizedBox(width: 220.0,),
+                      SizedBox(width: 260.0,),
                       OutlinedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/walkthrough2');//change this line

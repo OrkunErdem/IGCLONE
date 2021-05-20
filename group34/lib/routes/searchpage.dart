@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:group34/model/search.dart';
-import 'package:group34/searchCard.dart';
+import 'package:group34/classes_for_ui/searchCard.dart';
 
 class searchpage extends StatefulWidget {
   @override

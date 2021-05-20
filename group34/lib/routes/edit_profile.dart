@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/model/post.dart';
-import '../postCard.dart';
+import '../classes_for_ui/postCard.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override

@@ -1,12 +1,12 @@
 import 'package:group34/utils/color.dart';
 import 'package:flutter/material.dart';
-import 'model/notification.dart';
+import '../model/notification.dart';
 
-class Notifications extends StatelessWidget {
+class friend_request_notification_class extends StatelessWidget {
 
   final A_notification post;
   final Function delete;
-  Notifications({ this.post, this.delete });
+  friend_request_notification_class({ this.post, this.delete });
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +52,17 @@ class Notifications extends StatelessWidget {
 
 
                 SizedBox(width: 16.0),
-
                 IconButton(
                   icon: Icon(
-                    Icons.delete,
+                    Icons.thumb_up,
+                    size: 16,
+                    color: Colors.green,
+                  ),
+
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.thumb_down,
                     size: 16.0,
                     color: Colors.red,
                   ),
