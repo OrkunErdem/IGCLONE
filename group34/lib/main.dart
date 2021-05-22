@@ -8,6 +8,7 @@ import 'package:group34/routes/walkthrough3.dart';
 import 'package:group34/routes/welcome.dart';
 import 'package:group34/routes/login.dart';
 import 'package:group34/routes/signup.dart';
+import 'package:group34/routes/forgot_password.dart';
 import 'package:group34/routes/home.dart';
 import 'package:group34/routes/notificationpage.dart';
 import 'package:group34/routes/searchpage.dart';
@@ -18,7 +19,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/routes/walkthrough.dart';
 import 'routes/welcome.dart';
-
+import 'package:group34/routes/delete_user.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -77,6 +78,8 @@ class AppBase extends StatelessWidget {
         '/notificationpage': (context) => notificationpage(),
         '/searchpage': (context) => searchpage(),
         '/editprofilepage': (context) => EditProfilePage(),
+        '/forgotpassword': (context) => ForgotPassword(),
+        "/delete_user": (context) => delete_user(),
       },
     );
   }

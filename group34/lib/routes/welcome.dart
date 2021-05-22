@@ -154,6 +154,58 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ],
               ),
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: OutlinedButton(
+
+
+                        child: const Text(
+                          'Forgot Password',
+                          style: TextStyle(color: Colors.white),
+
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/forgotpassword');
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: OutlinedButton(
+
+
+                        child: const Text(
+                          'Delete Account',
+                          style: TextStyle(color: Colors.white),
+
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/delete_user');
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           )
       ),
