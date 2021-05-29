@@ -67,11 +67,16 @@ class _ProfileViewState extends State<ProfilePage> {
           children: [
             Row(
                 children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage('https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/ProfilPicture');
+                    },
+                    child:   CircleAvatar(
+                      backgroundImage: NetworkImage('https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg',
+                      ),
+                      radius: 45,
+                    ),
                   ),
-                  radius: 45,
-                ),
                   SizedBox(width: 5,),
                 Text(
                   'USER_NAME',
@@ -88,28 +93,36 @@ class _ProfileViewState extends State<ProfilePage> {
             SizedBox(height: 7,),
             Row(
               children:[
-                Text(
-                  'Follower:150',
-                  style: TextStyle(
-                    fontFamily: 'BrandonText',
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primary,
-                  ),
+                Row(
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        primary: Colors.black,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/connectionspage');
+                      },
+                      child: const Text('Followers:100'),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 7,),
-            Row(
-              children:[
-                Text(
-                  'Following:150',
-                  style: TextStyle(
-                    fontFamily: 'BrandonText',
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primary,
-                  ),
+                SizedBox(height: 7,),
+                Row(
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        primary: Colors.black,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/connectionspage');
+                      },
+                      child: const Text('Following:100'),
+                    ),
+                  ],
                 ),
               ],
             ),

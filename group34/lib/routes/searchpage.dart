@@ -31,6 +31,7 @@ class _WelcomeState2 extends State<searchpage> {
           'Search',
           style: kAppBarTitleTextStyle,
         ),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.home,color: Colors.white,),

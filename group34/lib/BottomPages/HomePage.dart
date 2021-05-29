@@ -1,7 +1,6 @@
 import 'package:group34/utils/dimension.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/routes/login.dart';
-import 'package:group34/routes/walkthrough2.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:group34/model/post.dart';
