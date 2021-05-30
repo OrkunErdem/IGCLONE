@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:group34/classes_for_ui/post_item.dart';
 import 'package:group34/utils/styles.dart';
 import 'package:group34/utils/color.dart';
-import 'package:group34/model/post.dart';
-import 'package:group34/classes_for_ui/postCard.dart';
+import 'package:group34/constant/post_json.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProfilePage extends StatefulWidget {
 @override
@@ -13,12 +14,6 @@ class _ProfileViewState extends State<ProfilePage> {
 
   int postCount = 0;
 
-  List<Post> posts = [
-
-    Post(text: 'USERNAME1', date: '18 March',image:'https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg', likes: 20, comments: 20),
-    Post(text: 'USERNAME 2', date: '19 March',image:'https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg', likes: 30, comments: 10),
-    Post(text: 'USERNAME 3', date: '17 March',image:'https://ceres.shiftdelete.net/500x300/original/2010/04/3.jpg',likes: 10, comments: 30),
-  ];
 
   void buttonPressed() {
     setState(() {
@@ -132,14 +127,24 @@ class _ProfileViewState extends State<ProfilePage> {
               thickness: 20,
             ),
             Column(
-              children: posts.map((post) => PostCard(
-                  post: post,
-                  delete: () {
-                    setState(() {
-                      posts.remove(post);
-                    });
-                  }
-              )).toList(),
+              children: <Widget>[
+                Column(
+                  children: List.generate(posts.length, (index){
+                    return PostItem(
+
+                      postImg: posts[index]['postImg'],
+                      profileImg: posts[index]['profileImg'],
+                      name: posts[index]['name'],
+                      caption: posts[index]['caption'],
+                      isLoved: posts[index]['isLoved'],
+                      viewCount: posts[index]['commentCount'],
+                      likedBy: posts[index]['likedBy'],
+                      dayAgo: posts[index]['dayAgo'],
+                      likecount: posts[index]["likecount"],
+                    );
+                  }),
+                )
+              ],
             ),
 
           ],
