@@ -4,6 +4,9 @@ import 'package:group34/utils/styles.dart';
 import 'package:group34/utils/color.dart';
 import 'package:group34/constant/post_json.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:group34/utils/firestore.dart';
 
 class ProfilePage extends StatefulWidget {
 @override
@@ -13,7 +16,8 @@ _ProfileViewState createState() => _ProfileViewState();
 class _ProfileViewState extends State<ProfilePage> {
 
   int postCount = 0;
-
+  FirebaseAuth auth = FirebaseAuth.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   void buttonPressed() {
     setState(() {
@@ -73,8 +77,9 @@ class _ProfileViewState extends State<ProfilePage> {
                     ),
                   ),
                   SizedBox(width: 5,),
+
                 Text(
-                  'USER_NAME',
+                  auth.currentUser.uid,
                   style: TextStyle(
                     fontFamily: 'BrandonText',
                     fontSize: 16.0,

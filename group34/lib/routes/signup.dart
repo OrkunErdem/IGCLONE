@@ -4,7 +4,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:group34/utils/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:group34/utils/firestore.dart';
 class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -30,6 +31,7 @@ class _SignUpState extends State<SignUp> {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: mail, password: pass);
       print(userCredential.toString());
+      usersetup(userName);
     } on FirebaseAuthException catch (e) {
       print(e.toString());
       if(e.code == 'email-already-in-use') {
