@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:group34/utils/color.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:group34/utils/styles.dart';
-
+import 'package:like_button/like_button.dart';
 
 
 class PostItem extends StatelessWidget {
@@ -12,12 +12,13 @@ class PostItem extends StatelessWidget {
   final String postImg;
   final String caption;
   final isLoved;
+  final iscomment;
   final String likedBy;
   final String viewCount;
   final String dayAgo;
   final int likecount;
   const PostItem({
-    Key key, this.profileImg, this.name, this.postImg, this.isLoved, this.likedBy, this.viewCount, this.dayAgo, this.caption,this.likecount
+    Key key, this.profileImg, this.name, this.postImg, this.isLoved, this.likedBy, this.viewCount, this.dayAgo, this.caption,this.likecount,this.iscomment
   }) : super(key: key);
 
   @override
@@ -76,9 +77,31 @@ class PostItem extends StatelessWidget {
               children: <Widget>[
                 Row(
               children: <Widget>[
-                isLoved ? SvgPicture.asset("assets/images/loved_icon.svg",width: 27,) : SvgPicture.asset("assets/images/love_icon.svg",width: 27,),
-                SizedBox(width: 20,),
-                 SvgPicture.asset("assets/images/comment_icon.svg",width: 27,),
+
+                LikeButton(
+                  circleColor:
+                  CircleColor(start: Color(0xFFF44336), end: Color(0xFFF44336)),
+                  likeBuilder: (bool isLoved) {
+                    return Icon(
+                      Icons.favorite,
+                      size: 30,
+                      color: isLoved ? Colors.red : Colors.grey,
+                    );
+                  },
+                ),
+                LikeButton(
+                  circleColor:
+                  CircleColor(start: Color(0xFFF44336), end: Color(0xFFF44336)),
+                  likeBuilder: (bool iscomment) {
+                    return Icon(
+                      Icons.comment,
+                      size: 30,
+                      color: iscomment ? Colors.black : Colors.grey,
+                    );
+                  },
+
+                ),
+
                   SizedBox(width: 100,),
                   Text(
                     "Post date: $dayAgo",

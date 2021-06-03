@@ -61,6 +61,7 @@ class _HomeViewState extends State<HomePage> {
                   likedBy: posts[index]['likedBy'],
                   dayAgo: posts[index]['dayAgo'],
                   likecount: posts[index]["likecount"],
+                  iscomment: posts[index]["iscomment"],
                 );
               }),
             )

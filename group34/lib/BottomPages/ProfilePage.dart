@@ -9,11 +9,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:group34/utils/firestore.dart';
 
 class ProfilePage extends StatefulWidget {
+
 @override
 _ProfileViewState createState() => _ProfileViewState();
 }
 
 class _ProfileViewState extends State<ProfilePage> {
+
 
   int postCount = 0;
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -79,7 +81,8 @@ class _ProfileViewState extends State<ProfilePage> {
                   SizedBox(width: 5,),
 
                 Text(
-                  auth.currentUser.uid,
+                  auth.currentUser.displayName,
+
                   style: TextStyle(
                     fontFamily: 'BrandonText',
                     fontSize: 16.0,
@@ -139,13 +142,14 @@ class _ProfileViewState extends State<ProfilePage> {
 
                       postImg: posts[index]['postImg'],
                       profileImg: posts[index]['profileImg'],
-                      name: posts[index]['name'],
+                      name:   auth.currentUser.displayName,
                       caption: posts[index]['caption'],
                       isLoved: posts[index]['isLoved'],
                       viewCount: posts[index]['commentCount'],
                       likedBy: posts[index]['likedBy'],
                       dayAgo: posts[index]['dayAgo'],
                       likecount: posts[index]["likecount"],
+                      iscomment: posts[index]["iscomment"],
                     );
                   }),
                 )
